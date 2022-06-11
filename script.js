@@ -1,8 +1,17 @@
 var hh = 0;
 var mm = 0;
 var ss = 0;
+st = false;
 
 var interval;
+
+function startButton() {
+    if (!st) {
+        st = true;
+        start();
+
+    }
+}
 
 
 function start() {
@@ -25,11 +34,13 @@ function start() {
 }
 
 function pause(event) {
+    st = false;
     clearInterval(interval);
 
 }
 
 function stop() {
+    st = false;
     clearInterval(interval);
     ss = 0;
     mm = 0;
@@ -37,7 +48,7 @@ function stop() {
     $(".time").text(hh.toString().padStart(2, "0") + " : " + mm.toString().padStart(2, "0") + " : " + ss.toString().padStart(2, "0"));
 }
 
-$(".start-btn").on('click', start);
+$(".start-btn").on('click', startButton);
 
 $(".pause-btn").on('click', pause);
 
